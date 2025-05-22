@@ -16,10 +16,19 @@ defmodule ExMon.Game do
   end
 
   def update(state) do
-    Agent.update(__MODULE__, fn _ -> state end)
+    Agent.update(
+      __MODULE__,
+      fn _ -> Map.put(state, :turn, change_turn(state.turn)) end
+    )
   end
 
-  def player, do: Map.get(info(), :player)
   def turn, do: Map.get(info(), :turn)
   def fetch_player(player), do: Map.get(info(), player)
+
+  def change_turn(turn) do
+    case turn do
+      :player -> :computer
+      :computer -> :player
+    end
+  end
 end
