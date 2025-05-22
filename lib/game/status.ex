@@ -11,6 +11,13 @@ defmodule ExMon.Game.Status do
     IO.puts("\n==== Invalid Move: #{move} ====\n")
   end
 
-  def create_line(0), do: ""
-  def create_line(range), do: "-" <> create_line(range - 1)
+  def print_move_message(:computer, :attack, damage) do
+    IO.puts("\n==== The Player attacked the Computer dealing #{damage} damage. ====\n")
+  end
+
+  def print_move_message(:player, :attack, damage) do
+    IO.puts("\n==== The Computer attacked the Player dealing #{damage} damage. ====\n")
+  end
+
+  defp create_line(range), do: String.duplicate("-", range)
 end
