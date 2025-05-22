@@ -7,6 +7,10 @@ defmodule ExMon.Game.Status do
     IO.puts(create_line(25))
   end
 
+  def print_wrong_move_message(move) do
+    IO.puts("\n==== Invalid Move: #{move} ====\n")
+  end
+
   def create_line(0), do: ""
   def create_line(range), do: "-" <> create_line(range - 1)
 end

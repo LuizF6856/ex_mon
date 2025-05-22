@@ -1,13 +1,11 @@
 defmodule ExMon.Game.Actions.Attack do
-  alias ExMon.Game.Actions
   alias ExMon.Game
 
   @move_avg_power 18..25
   @move_rnd_power 18..35
 
   def attack_opponent(opponent, move) do
-    {:ok, move_attack} = Actions.fetch_move(move)
-    damage = calculate_power(move_attack)
+    damage = calculate_power(move)
 
     Game.fetch_player(opponent)
     |> Map.get(:life)
@@ -24,5 +22,12 @@ defmodule ExMon.Game.Actions.Attack do
   defp update_opponent_life(life, opponent) do
     Game.fetch_player(opponent)
     |> Map.put(:life, life)
+    |> update_game(opponent)
+  end
+
+  defp update_game(player, opponent) do
+    Game.info()
+    |> Map.put(opponent, player)
+    |> Game.update()
   end
 end
