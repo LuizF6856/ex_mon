@@ -3,19 +3,18 @@ defmodule ExMon.Game.Actions.Heal do
 
   @move_heal 18..25
 
-  def heal_yourself(player, move) do
-    heal = calculate_heal(move)
-
+  def heal_yourself(player) do
     Game.fetch_player(player)
     |> Map.get(:life)
-    |> calculate_total_life(heal)
+    |> calculate_heal()
+    |> calculate_total_life()
     |> update_player_life(player)
   end
 
-  defp calculate_heal(:move_heal), do: Enum.random(@move_heal)
+  defp calculate_heal(life), do: life + Enum.random(@move_heal)
 
-  defp calculate_total_life(life, heal) when life + heal > 100, do: 100
-  defp calculate_total_life(life, heal), do: life + heal
+  defp calculate_total_life(life) when life > 100, do: 100
+  defp calculate_total_life(life), do: life
 
   defp update_player_life(life, player) do
     Game.fetch_player(player)
@@ -23,9 +22,9 @@ defmodule ExMon.Game.Actions.Heal do
     |> update_game(player)
   end
 
-  defp update_game(healed, player) do
+  defp update_game(player_healed, player) do
     Game.info()
-    |> Map.put(player, healed)
+    |> Map.put(player, player_healed)
     |> Game.update()
   end
 end

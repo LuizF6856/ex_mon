@@ -4,21 +4,15 @@ defmodule ExMon.Game.Actions do
 
   def attack(move) do
     case Game.turn() do
-      :player ->
-        Attack.attack_opponent(:computer, move)
-
-      :computer ->
-        Attack.attack_opponent(:player, move)
+      :player -> Attack.attack_opponent(:computer, move)
+      :computer -> Attack.attack_opponent(:player, move)
     end
   end
 
-  def heal(move) do
+  def heal do
     case Game.turn() do
-      :player ->
-        Heal.heal_yourself(:player, move)
-
-      :computer ->
-        Heal.heal_yourself(:computer, move)
+      :player -> Heal.heal_yourself(:player)
+      :computer -> Heal.heal_yourself(:computer)
     end
   end
 
