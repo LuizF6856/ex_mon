@@ -1,5 +1,6 @@
 defmodule ExMon.Game.Actions.Heal do
   alias ExMon.Game
+  alias ExMon.Game.Status
 
   @move_heal 18..25
 
@@ -26,5 +27,7 @@ defmodule ExMon.Game.Actions.Heal do
     Game.info()
     |> Map.put(player, player_healed)
     |> Game.update()
+
+    Status.print_move_message(player, :heal, player_healed.life)
   end
 end
