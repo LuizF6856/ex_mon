@@ -39,7 +39,7 @@ defmodule ExMon.Game do
     Map.put(state, :status, :continue)
   end
 
-  def update_turn(turn) do
+  defp update_turn(turn) do
     case turn do
       :player -> :computer
       :computer -> :player
