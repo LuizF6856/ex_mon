@@ -49,13 +49,13 @@ defmodule ExMon.GameTest do
     end
 
     test "returns the game state updated" do
-      currecy_state = Game.info()
+      current_state = Game.info()
 
-      assert 100 == currecy_state.computer.life
+      assert 100 == current_state.computer.life
 
-      update_computer_life = Map.put(currecy_state.computer, :life, 80)
+      update_computer_life = Map.put(current_state.computer, :life, 80)
 
-      new_state = Map.put(currecy_state, :computer, update_computer_life)
+      new_state = Map.put(current_state, :computer, update_computer_life)
 
       assert :ok == Game.update(new_state)
 
@@ -65,13 +65,13 @@ defmodule ExMon.GameTest do
     end
 
     test "returns the turn updated" do
-      currecy_state = Game.info()
+      current_state = Game.info()
 
-      assert :player == currecy_state.turn
+      assert :player == current_state.turn
 
-      update_computer_life = Map.put(currecy_state.computer, :life, 80)
+      update_computer_life = Map.put(current_state.computer, :life, 80)
 
-      new_state = Map.put(currecy_state, :computer, update_computer_life)
+      new_state = Map.put(current_state, :computer, update_computer_life)
 
       assert :ok == Game.update(new_state)
 
@@ -81,13 +81,13 @@ defmodule ExMon.GameTest do
     end
 
     test "returns the status updated to continue" do
-      currecy_state = Game.info()
+      current_state = Game.info()
 
-      assert :started == currecy_state.status
+      assert :started == current_state.status
 
-      update_computer_life = Map.put(currecy_state.computer, :life, 80)
+      update_computer_life = Map.put(current_state.computer, :life, 80)
 
-      new_state = Map.put(currecy_state, :computer, update_computer_life)
+      new_state = Map.put(current_state, :computer, update_computer_life)
 
       assert :ok == Game.update(new_state)
 
@@ -97,13 +97,13 @@ defmodule ExMon.GameTest do
     end
 
     test "return status game over" do
-      currecy_state = Game.info()
+      current_state = Game.info()
 
-      assert :started == currecy_state.status
+      assert :started == current_state.status
 
-      update_computer_life = Map.put(currecy_state.computer, :life, 0)
+      update_computer_life = Map.put(current_state.computer, :life, 0)
 
-      new_state = Map.put(currecy_state, :computer, update_computer_life)
+      new_state = Map.put(current_state, :computer, update_computer_life)
 
       assert :ok == Game.update(new_state)
 
