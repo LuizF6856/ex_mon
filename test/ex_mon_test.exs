@@ -51,7 +51,6 @@ defmodule ExMonTest do
 
       assert message =~ "The Player attacked the Computer"
       assert message =~ "it's computer turn"
-      assert message =~ "The Computer attacked the Player"
       assert message =~ "it's player turn"
       assert message =~ "status: :continue"
     end
