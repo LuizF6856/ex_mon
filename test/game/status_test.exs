@@ -2,10 +2,10 @@ defmodule ExMon.Game.StatusTest do
   use ExUnit.Case
 
   import ExUnit.CaptureIO
+  import ExMon.Helpers.StateUpdateTest
 
   alias ExMon.Game
   alias ExMon.Game.Status
-  alias ExMon.Player
 
   describe "print_round_message/1" do
     setup do
@@ -26,23 +26,16 @@ defmodule ExMon.Game.StatusTest do
     end
 
     test "print continue message" do
-      currency_state = Game.info()
-      new_state = Map.put(currency_state, :computer, %Player{life: 70})
-
-      Game.update(new_state)
+      update_player_life(:computer, 70)
 
       message = capture_io(fn -> Status.print_round_message(Game.info()) end)
 
-      assert message =~ "it's computer turn"
+      assert message =~ "it's player turn"
       assert message =~ "status: :continue"
     end
 
     test "print game over message" do
-      currency_state = Game.info()
-      computer_with_zero_life = %Player{life: 0}
-      new_state = %{currency_state | turn: :computer, computer: computer_with_zero_life}
-
-      Game.update(new_state)
+      update_player_life(:computer, 0)
 
       message = capture_io(fn -> Status.print_round_message(Game.info()) end)
 

@@ -2,8 +2,8 @@ defmodule ExMon.Game.Actions.AttackTest do
   use ExUnit.Case
 
   import ExUnit.CaptureIO
+  import ExMon.Helpers.StateUpdateTest
 
-  alias ExMon.Player
   alias ExMon.Game
   alias ExMon.Game.Actions.Attack
 
@@ -28,11 +28,7 @@ defmodule ExMon.Game.Actions.AttackTest do
     end
 
     test "see if next attack of player update the computer life to zero instead of a negative number" do
-      currency_state = Game.info()
-      computer_almost_dead = %Player{life: 5}
-      new_state = %{currency_state | turn: :computer, computer: computer_almost_dead}
-
-      Game.update(new_state)
+      update_player_life(:computer, 5)
 
       message =
         capture_io(fn ->

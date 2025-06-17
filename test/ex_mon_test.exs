@@ -2,8 +2,9 @@ defmodule ExMonTest do
   use ExUnit.Case
 
   import ExUnit.CaptureIO
+  import ExMon.Helpers.StateUpdateTest
 
-  alias ExMon.{Game, Player}
+  alias ExMon.Player
 
   describe "create_player/4" do
     test "create a player" do
@@ -74,11 +75,7 @@ defmodule ExMonTest do
     end
 
     test "when the game is over" do
-      currency_state = Game.info()
-      computer_almost_dead = %Player{life: 1}
-      new_state = %{currency_state | turn: :computer, computer: computer_almost_dead}
-
-      Game.update(new_state)
+      update_player_life(:computer, 1)
 
       message =
         capture_io(fn ->

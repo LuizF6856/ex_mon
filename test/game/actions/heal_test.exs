@@ -2,10 +2,10 @@ defmodule ExMon.Game.Actions.HealTest do
   use ExUnit.Case
 
   import ExUnit.CaptureIO
+  import ExMon.Helpers.StateUpdateTest
 
   alias ExMon.Game
   alias ExMon.Game.Actions.Heal
-  alias ExMon.Player
 
   describe "heal_yourself/1" do
     setup do
@@ -19,11 +19,7 @@ defmodule ExMon.Game.Actions.HealTest do
     end
 
     test "when player is healing" do
-      currency_state = Game.info()
-      player_life = %Player{life: 80}
-      new_state = %{currency_state | turn: :computer, player: player_life}
-
-      Game.update(new_state)
+      update_player_life(:player, 80)
 
       message = capture_io(fn -> Heal.heal_yourself(:player) end)
 
