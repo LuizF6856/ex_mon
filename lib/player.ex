@@ -1,4 +1,6 @@
 defmodule ExMon.Player do
+  @moduledoc false
+
   defstruct [:life, :name, :moves]
 
   def build_player(name, moderate_attack, variate_attack, heal) do

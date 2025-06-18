@@ -1,4 +1,6 @@
 defmodule ExMon.Game.Status do
+  @moduledoc false
+
   def print_round_message(%{status: :started} = info) do
     started_message = "=== the game is started! ==="
     size_to_make_line = String.length(started_message)

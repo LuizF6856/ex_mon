@@ -1,4 +1,6 @@
 defmodule ExMon.Game.Actions do
+  @moduledoc false
+
   alias ExMon.Game
   alias ExMon.Game.Actions.{Attack, Heal}
 

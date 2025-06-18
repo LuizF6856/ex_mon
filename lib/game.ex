@@ -1,4 +1,6 @@
 defmodule ExMon.Game do
+  @moduledoc false
+
   use Agent
 
   alias ExMon.Player
