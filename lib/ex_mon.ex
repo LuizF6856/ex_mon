@@ -1,6 +1,10 @@
 defmodule ExMon do
-  alias ExMon.Game.{Status, Actions}
-  alias ExMon.{Game, Player}
+  @moduledoc false
+
+  alias ExMon.Game
+  alias ExMon.Game.Actions
+  alias ExMon.Game.Status
+  alias ExMon.Player
 
   def create_player(name, move_avg, move_rnd, move_heal) do
     Player.build_player(name, move_avg, move_rnd, move_heal)
